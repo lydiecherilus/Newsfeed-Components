@@ -112,3 +112,61 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticles(articleObjects) {
+  // articleObjects = (title, date, firstParagraph, secondParagraph, thirdParagraph)
+
+  // define new elements
+  const article = document.createElement('div');
+  const titleText = document.createElement('h2');
+  const dateText = document.createElement('p');
+  const paragraphOne = document.createElement('p');
+  const paragraphTwo = document.createElement('p');
+  const paragraphThree = document.createElement('p');
+  const expandButton = document.createElement('button');
+
+
+  // set class names
+  article.classList.add('article');
+  titleText.classList.add('title');
+  dateText.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+
+  // setup structure of the elements
+  article.appendChild(titleText);
+  article.appendChild(dateText);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(expandButton);
+
+
+  // set text content
+  titleText.textContent = articleObjects.title;
+  dateText.textContent = articleObjects.date;
+  paragraphOne.textContent = articleObjects.firstParagraph;
+  paragraphTwo.textContent = articleObjects.secondParagraph;
+  paragraphThree.textContent = articleObjects.thirdParagraph;
+  expandButton.textContent = 'expand';
+
+
+  // add event listener
+  expandButton.addEventListener('click', (event) => {
+    article.classList.toggle("article-open");
+    // if (article.classList.contains('article-open')) {
+    //   article.classList.remove('article-open');
+    // } else {
+    //   article.classList.add('article-open');
+    // }
+  });
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+data.forEach(articleObjects => {
+  const articleElement = createArticles(articleObjects);
+  articles.appendChild(articleElement);
+});
+
+
